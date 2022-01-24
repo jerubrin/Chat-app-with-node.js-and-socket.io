@@ -11,25 +11,23 @@
 
   <body>
     <header>
-      <h1>Чат</h1>
+      <h1>ЧАТ ТРАНСЛЯЦИИ</h1>
     </header>
 
     <section>
       <div id="change_username">
-	<input id="username" type="text" />
-	<button id="send_username" type="button">Изменить имя пользователя</button>
+	       <button id="send_username" type="button">ЗАДАТЬ ИМЯ</button>
+          <input id="username" type="text" />
       </div>
+    </section>
+      
+    <section id="input_zone"> 
+        <button id="send_message" class="vertical-align" type="button">ОТПРАВИТЬ</button>
+        <input id="message" class="vertical-align" type="text" />
     </section>
 
     <section id="chatroom">
       <section id="feedback"></section>
-    </section>
-
-    
-
-    <section id="input_zone"> 
-      <input id="message" class="vertical-align" type="text" />
-      <button id="send_message" class="vertical-align" type="button">Отправаить</button>
     </section>
 
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>

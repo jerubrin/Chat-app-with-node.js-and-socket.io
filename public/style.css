@@ -12,76 +12,112 @@
   }
   
   html {
-      height: 90%;
-      width:99%;
+      min-height: 20%;
+      max-width:99%;
   }
   
   body {
-      margin: 5px;
+      line-height: 1;
       height: 100%;
+      width: 100%;
+      display: flex;
+    flex-direction: column-reverse;
+    position: absolute;
   }
+
+article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
+    padding: 0
+}
   
   header {
+      
       text-align: center;
   }
   
   h1 {
-      font-family: 'Comfortaa', sans-serif;
+      position: absolute;
+      top: 4px;
+      width: 100%;
+      background: #0002;
+      color: white;
+      font-size: 1.5em;
+      font-family: sans-serif;
       margin: 0px;
   }
-  
-  div#change_username, section#input_zone {
-      border: 1px outset rgb(79, 116, 238);
-      margin:2px;
-  }
+
+#input_zone {
+    display: flex;
+}
+
+section#input_zone {
+    display: none;
+    flex-direction: row-reverse;
+    width: 100%;
+}
   
   div#change_username {
-      height: 3%;
-      display: inline-block;
-      padding:2px;
-      background-color: rgb(169, 230, 245);
+      display: flex;
+      flex-direction: row-reverse;
+  }
+
+  #send_username {
+      margin-left: 4px;
   }
   
   section#chatroom {
-      border: 3px inset lightblue;
-      height: 85%;
       overflow: auto;
   }
-  
-  section#input_zone {
-      height: 7%;
-      text-align: center;
-      background-color: rgb(76, 119, 238);
-  }
+
+#input_zone {
+    padding: 8px;
+}
+
+#change_username {
+    padding: 8px;
+}
   
   .vertical-align {
       position: relative;
-      top: 50%;
-      -webkit-transform: translateY(-50%);
-      -ms-transform: translateY(-50%);
-      transform: translateY(-50%);
   }
   
   input#username {
-      font-family: 'Comfortaa', sans-serif;
-  }
-  
-  input#message {
-      display: inline-block;
-      width: 89%;
-      height: 80%;
-      font-family: 'Comfortaa', sans-serif;
+      font-family: sans-serif;
+      flex: auto;
       font-size: 2vh;
   }
   
-  button#send_message {
-      display: inline-block;
-      height: 80%;
-      width: 10%;
+  input#message {
+      display: flex;
+      font-family: sans-serif;
+      font-size: 2vh;
+      flex: auto;
   }
+
+  button {
+      background: #0e128199;
+      color: white;
+      border: black;
+      border-radius: 4px;
+      padding: 8px;
+      font-size: 0.8em;
+      margin-left: 4px;
+  }
+
+  input {
+      background: #0e128199;
+      color: white;
+      border: black;
+      border-radius: 4px;
+      padding: 8px;
+      font-size: 0.8em;
+  }
+  
   .alert{
-    padding: 10px;
-    margin: 12px;
+    color: white;
+    background-color: #0004;
+    border: none;
+    padding: 8px;
+    margin: 8px;
     width:auto;
   }
   
