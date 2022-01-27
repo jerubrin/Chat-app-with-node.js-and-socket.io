@@ -7,30 +7,31 @@
     <link rel="stylesheet" type="text/css" href="style.css" >
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
     <title>Chat App</title>
-  </head>
-
+    </head>
   <body>
-    <header>
-      <h1>ЧАТ ТРАНСЛЯЦИИ</h1>
-    </header>
+        <header>
+            <h1>ЧАТ ТРАНСЛЯЦИИ</h1>
+        </header>
+        <div class="visible-controll" id="hide_chat" type="button">СКРЫТЬ &#11014;</div>
+        <div class="visible-controll" id="show_chat" type="button">ЧАТ &#11015;</div>
 
-    <section>
-      <div id="change_username">
-	       <button id="send_username" type="button">ЗАДАТЬ ИМЯ</button>
-          <input id="username" type="text" />
-      </div>
-    </section>
+        <section>
+            <div id="change_username">
+	            <button id="send_username" type="button">ЗАДАТЬ ИМЯ</button>
+                <input id="username" type="text" autocomplete="off"/>
+            </div>
+        </section>
       
-    <section id="input_zone"> 
-        <button id="send_message" class="vertical-align" type="button">ОТПРАВИТЬ</button>
-        <input id="message" class="vertical-align" type="text" />
-    </section>
+        <section id="input_zone"> 
+            <button id="send_message" class="vertical-align" type="button">ОТПРАВИТЬ</button>
+            <input id="message" class="vertical-align" type="text" autocomplete="off"/>
+        </section>
 
-    <section id="chatroom">
-      <section id="feedback"></section>
-    </section>
+        <section id="chatroom">
+            <section id="feedback"></section>
+        </section>
 
-    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <script src="chat.js"></script>
+        <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+        <script src="chat.js"></script>
   </body>
 </html>

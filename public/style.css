@@ -17,6 +17,7 @@
   }
   
   body {
+      background: #28150766;
       line-height: 1;
       height: 100%;
       width: 100%;
@@ -24,6 +25,34 @@
     flex-direction: column-reverse;
     position: absolute;
   }
+
+:active, :hover, :focus {
+    outline: 0;
+    outline-offset: 0;
+}
+
+#hide_chat {
+    position: fixed;
+    top: 0;
+    right: 0;
+    margin: 4px;
+}
+
+#show_chat {
+    visibility: hidden;
+    position: fixed;
+    top: 0;
+    right: 0;
+    margin: 4px;
+}
+
+.visible-controll {
+    background: #4c4c3b75;
+    color: white;
+    padding: 6px;
+    border-radius: 4px;
+    font-size: 0.8em;
+}
 
 article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
     padding: 0
@@ -35,14 +64,15 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
   }
   
   h1 {
-      position: absolute;
-      top: 4px;
-      width: 100%;
-      background: #0002;
-      color: white;
-      font-size: 1.5em;
-      font-family: sans-serif;
-      margin: 0px;
+    position: absolute;
+    top: 0px;
+    width: 100%;
+    background: #0002;
+    color: white;
+    font-size: 1em;
+    font-family: sans-serif;
+    margin: 0px;
+    padding: 8px;
   }
 
 #input_zone {
@@ -66,6 +96,7 @@ section#input_zone {
   
   section#chatroom {
       overflow: auto;
+      margin-top: 40px;
   }
 
 #input_zone {
@@ -84,6 +115,7 @@ section#input_zone {
       font-family: sans-serif;
       flex: auto;
       font-size: 2vh;
+      background-color: #c5787899;
   }
   
   input#message {
@@ -94,7 +126,7 @@ section#input_zone {
   }
 
   button {
-      background: #0e128199;
+      background: #856a2173;
       color: white;
       border: black;
       border-radius: 4px;
@@ -103,8 +135,12 @@ section#input_zone {
       margin-left: 4px;
   }
 
+button#send_username {
+    background: #99131399
+}
+
   input {
-      background: #0e128199;
+      background: #f1e6c629;
       color: white;
       border: black;
       border-radius: 4px;
@@ -113,6 +149,7 @@ section#input_zone {
   }
   
   .alert{
+    display: inherit;
     color: white;
     background-color: #0004;
     border: none;
@@ -120,6 +157,38 @@ section#input_zone {
     margin: 8px;
     width:auto;
   }
+
+.mod-tools {
+    display: none;
+}
+
+button#remove_msg {
+    height: 4px;
+    line-height: 0px;
+}
+
+button#remove_all {
+    height: 4px;
+    line-height: 0px;
+}
+
+button#ban_user {
+    height: 4px;
+    line-height: 0px;
+}
+
+
+.alert-user {
+    background-color: #0004;
+}
+
+.alert-admin {
+    background-color: #d552524d;
+}
+
+.alert-moderator {
+    background-color: #e1b41233;
+}
   
   p.message {
       margin: 0px;

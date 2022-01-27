@@ -1,5 +1,8 @@
 var readyToSent = true;
 var send_message = $("#send_message");
+var head = $("head");
+var messageCount = 0;
+var showModTools = "div.mod-tools { display: inline-flex; }"
 
 $(function() {
   var socket = io.connect("http://localhost:3000");
@@ -14,43 +17,44 @@ $(function() {
   var isSeted = false;
   var msgnum = 0;
 
-  send_message.click(() => {
-    socket.emit("new_message", {
-      message: message.val(),
-      className: alertClass
-    });
-  });
-  var min = 1;
-  var max = 6;
-  var random = Math.floor(Math.random() * (max - min)) + min;
 
-  // Устаналиваем класс в переменную в зависимости от случайного числа
-  // Эти классы взяты из Bootstrap стилей
-  var alertClass;
-  switch (random) {
-    case 1:
-      alertClass = "secondary";
-      break;
-    case 2:
-      alertClass = "danger";
-      break;
-    case 3:
-      alertClass = "success";
-      break;
-    case 4:
-      alertClass = "warning";
-      break;
-    case 5:
-      alertClass = "info";
-      break;
-    case 6:
-      alertClass = "light";
-      break;
-  }
+  $("#hide_chat").click( () => {
+      $("header").css("visibility", "hidden")
+      $("section").css("visibility", "hidden")
+      $("body").css("background", "transparent")
+      $("#hide_chat").css("visibility", "hidden")
+      $("#show_chat").css("visibility", "visible")
+      
+  });
+    
+  $("#show_chat").click( () => {
+      $("header").css("visibility", "visible")
+      $("section").css("visibility", "visible")
+      $("body").css("background", "#28150766")
+      $("#hide_chat").css("visibility", "visible")
+      $("#show_chat").css("visibility", "hidden")
+  });
+    
+  send_message.click(() => {
+      if((message.val() != "") && readyToSent) {
+          socket.emit("new_message", {
+              message: message.val(),
+              className: alertClass
+          });
+          message.val("");
+          waitForNextMsg();
+      }
+  });
+
+  var alertClass = "user"
 
   socket.on("add_mess", data => {
     feedback.html("");
-    message.val("");
+    var adminDiv = "<div class=\"mod-tools\">" + 
+        "<button id=\"remove_msg\" type=\"button\">rm</button>" +
+        "<button id=\"remove_all\" type=\"button\">rAll</button>" +
+        "<button id=\"ban_user\" type=\"button\">ban</button>" +
+        "</div>"
     chatroom.append(
       "<div class='" + 
         "alert alert-" + data.className + "' id='num" + msgnum.toString() +
@@ -59,10 +63,25 @@ $(function() {
         data.username +
         "</b>: " +
         data.message +
+        adminDiv +
         "</div>"
     );
-    autoHide("#num" + msgnum.toString())
-    msgnum++
+    if(messageCount > 15) {
+        autoHide("#num" + (msgnum-16).toString());
+    }
+    messageCount++;
+    msgnum++;
+  });
+    
+  socket.on('auth_user', data => {
+      console.log("auth_user")
+      if(data.className == "admin" || data.className == "moderator") {
+         head.append("<style>" + showModTools + "</style>");
+      }
+  });
+    
+  socket.on("add_mess", data => {
+      feedback.html("");
   });
     
 $(document).on('keypress',function(e) {
@@ -73,6 +92,7 @@ $(document).on('keypress',function(e) {
                     message: message.val(),
                     className: alertClass
                 });
+                message.val("");
                 waitForNextMsg();
             }
         } else {
@@ -93,6 +113,7 @@ $(document).on('keypress',function(e) {
           input_zone.css("display", "flex");
           isSeted = true;
       }
+      socket.emit("all_messages", {message: "0"});
   });
 
   message.bind("keypress", () => {
@@ -104,24 +125,30 @@ $(document).on('keypress',function(e) {
       "<p><i>" + data.username + " печатает сообщение..." + "</i></p>"
     );
   });
+
 });
 
 function autoHide(className) {
     var fClass = $(document).find(className)
-    setTimeout(hideClass, 30000, fClass);
+    setTimeout(hideClass, 5000, fClass);
 }
 
 function hideClass(fClass) {
-    fClass.css("display", "none")
+    fClass.css("display", "none");
+    messageCount--;
 }
 
 function waitForNextMsg() {
     readyToSent = false;
-    send_message.css("background", "#b6b7d18a")
+    send_message.css("background", "#b6b7d18a");
     setTimeout(sendNext, 5000);
 }
 
 function sendNext() {
-    send_message.css("background", "#0e128199")
-    readyToSent = true
+    send_message.css("background", "#0e128199");
+    readyToSent = true;
 }
+
+
+//visibility: hidden;
+//visibility: visible;
